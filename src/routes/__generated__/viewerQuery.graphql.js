@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dd7e91da20ea1b76cdc663082bd91f7c
+ * @relayHash 2ef3dd0f8c038510d08b9377d673e0fd
  */
 
 /* eslint-disable */
@@ -9,10 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type viewerQueryVariables = {|
+export type ViewerQueryVariables = {|
   number_of_repos: number
 |};
-export type viewerQueryResponse = {|
+export type ViewerQueryResponse = {|
   +viewer: {|
     +name: ?string,
     +repositories: {|
@@ -22,15 +22,15 @@ export type viewerQueryResponse = {|
     |},
   |}
 |};
-export type viewerQuery = {|
-  variables: viewerQueryVariables,
-  response: viewerQueryResponse,
+export type ViewerQuery = {|
+  variables: ViewerQueryVariables,
+  response: ViewerQueryResponse,
 |};
 */
 
 
 /*
-query viewerQuery(
+query ViewerQuery(
   $number_of_repos: Int!
 ) {
   viewer {
@@ -80,13 +80,13 @@ v3 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "viewerQuery",
+  "name": "ViewerQuery",
   "id": null,
-  "text": "query viewerQuery(\n  $number_of_repos: Int!\n) {\n  viewer {\n    name\n    repositories(last: $number_of_repos) {\n      nodes {\n        name\n        id\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query ViewerQuery(\n  $number_of_repos: Int!\n) {\n  viewer {\n    name\n    repositories(last: $number_of_repos) {\n      nodes {\n        name\n        id\n      }\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "viewerQuery",
+    "name": "ViewerQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -130,7 +130,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "viewerQuery",
+    "name": "ViewerQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -175,5 +175,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '1a7e8d5912d79253a4d7147b0cc3c323';
+(node/*: any*/).hash = '0f7ad9d1681a62045d50a5ab0f832146';
 module.exports = node;

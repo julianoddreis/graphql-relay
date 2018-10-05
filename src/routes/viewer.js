@@ -1,14 +1,15 @@
 import React from 'react';
 import {graphql, QueryRenderer} from 'react-relay';
 import environment from '../Environment'
+import Page from '../components/page'
 
-export default class viewer extends React.Component {
+export default class Viewer extends React.Component {
   render() {
     return (
       <QueryRenderer
         environment={environment}
         query={graphql`
-          query viewerQuery($number_of_repos:Int!) {
+          query ViewerQuery($number_of_repos:Int!) {
             viewer {
               name
               repositories(last: $number_of_repos) {
@@ -27,7 +28,7 @@ export default class viewer extends React.Component {
           if (!props) {
             return <div>Loading...</div>;
           }
-          return <div>User ID: {props.viewer.name}</div>;
+          return <Page content={props.viewer} />
         }}
       />
     );
