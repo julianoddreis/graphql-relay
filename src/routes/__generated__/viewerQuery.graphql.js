@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 02ab7240b8c595d6bd72c87e292e0229
+ * @relayHash dd7e91da20ea1b76cdc663082bd91f7c
  */
 
 /* eslint-disable */
@@ -9,7 +9,9 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type viewerQueryVariables = {||};
+export type viewerQueryVariables = {|
+  number_of_repos: number
+|};
 export type viewerQueryResponse = {|
   +viewer: {|
     +name: ?string,
@@ -28,10 +30,12 @@ export type viewerQuery = {|
 
 
 /*
-query viewerQuery {
+query viewerQuery(
+  $number_of_repos: Int!
+) {
   viewer {
     name
-    repositories {
+    repositories(last: $number_of_repos) {
       nodes {
         name
         id
@@ -43,14 +47,30 @@ query viewerQuery {
 */
 
 const node/*: ConcreteRequest*/ = (function(){
-var v0 = {
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "number_of_repos",
+    "type": "Int!",
+    "defaultValue": null
+  }
+],
+v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
 },
-v1 = {
+v2 = [
+  {
+    "kind": "Variable",
+    "name": "last",
+    "variableName": "number_of_repos",
+    "type": "Int"
+  }
+],
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -62,14 +82,14 @@ return {
   "operationKind": "query",
   "name": "viewerQuery",
   "id": null,
-  "text": "query viewerQuery {\n  viewer {\n    name\n    repositories {\n      nodes {\n        name\n        id\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query viewerQuery(\n  $number_of_repos: Int!\n) {\n  viewer {\n    name\n    repositories(last: $number_of_repos) {\n      nodes {\n        name\n        id\n      }\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "viewerQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": [],
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
@@ -80,13 +100,13 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v0,
+          v1,
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "repositories",
             "storageKey": null,
-            "args": null,
+            "args": v2,
             "concreteType": "RepositoryConnection",
             "plural": false,
             "selections": [
@@ -99,7 +119,7 @@ return {
                 "concreteType": "Repository",
                 "plural": true,
                 "selections": [
-                  v0
+                  v1
                 ]
               }
             ]
@@ -111,7 +131,7 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "viewerQuery",
-    "argumentDefinitions": [],
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
@@ -122,13 +142,13 @@ return {
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v0,
+          v1,
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "repositories",
             "storageKey": null,
-            "args": null,
+            "args": v2,
             "concreteType": "RepositoryConnection",
             "plural": false,
             "selections": [
@@ -141,13 +161,13 @@ return {
                 "concreteType": "Repository",
                 "plural": true,
                 "selections": [
-                  v0,
-                  v1
+                  v1,
+                  v3
                 ]
               }
             ]
           },
-          v1
+          v3
         ]
       }
     ]
@@ -155,5 +175,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2b612b2a4fedbc3a35db81a728b6e909';
+(node/*: any*/).hash = '1a7e8d5912d79253a4d7147b0cc3c323';
 module.exports = node;

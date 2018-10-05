@@ -8,10 +8,10 @@ export default class viewer extends React.Component {
       <QueryRenderer
         environment={environment}
         query={graphql`
-          query viewerQuery {
+          query viewerQuery($number_of_repos:Int!) {
             viewer {
               name
-              repositories {
+              repositories(last: $number_of_repos) {
                 nodes {
                   name
                 }
@@ -19,7 +19,7 @@ export default class viewer extends React.Component {
             }
           }
         `}
-        variables={{}}
+        variables={{number_of_repos: 3}}
         render={({error, props}) => {
           if (error) {
             return <div>Error!</div>;
@@ -27,7 +27,7 @@ export default class viewer extends React.Component {
           if (!props) {
             return <div>Loading...</div>;
           }
-          return <div>User ID: {props.viewer.id}</div>;
+          return <div>User ID: {props.viewer.name}</div>;
         }}
       />
     );

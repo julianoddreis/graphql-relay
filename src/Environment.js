@@ -15,6 +15,7 @@ function fetchQuery(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': 'Bearer 9f880af927cc7664f0aa74547d8c7790f5eafc2c'
     },
     body: JSON.stringify({
       query: operation.text,
