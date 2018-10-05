@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "hackernews": {
+      "schemaPath": "schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "default": "https://api.github.com/graphql"
+        }
+      }
+    }
+  }
+}
