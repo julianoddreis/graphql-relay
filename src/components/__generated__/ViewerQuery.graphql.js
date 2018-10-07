@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 993fafed9a683fefb92d89288cd1aa67
+ * @relayHash fbc0d95a46492d67318f5eee0e212c3f
  */
 
 /* eslint-disable */
@@ -14,6 +14,7 @@ export type ViewerQueryVariables = {||};
 export type ViewerQueryResponse = {|
   +viewer: {|
     +id: string,
+    +name: ?string,
     +$fragmentRefs: Repositories_repositories$ref,
   |}
 |};
@@ -28,6 +29,7 @@ export type ViewerQuery = {|
 query ViewerQuery {
   viewer {
     id
+    name
     ...Repositories_repositories
   }
 }
@@ -42,7 +44,10 @@ fragment Repositories_repositories on User {
 }
 
 fragment Repository_repository on Repository {
+  id
   name
+  url
+  viewerHasStarred
 }
 */
 
@@ -53,13 +58,20 @@ var v0 = {
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v1 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "ViewerQuery",
   "id": null,
-  "text": "query ViewerQuery {\n  viewer {\n    id\n    ...Repositories_repositories\n  }\n}\n\nfragment Repositories_repositories on User {\n  repositories(first: 10) {\n    nodes {\n      id\n      ...Repository_repository\n    }\n  }\n}\n\nfragment Repository_repository on Repository {\n  name\n}\n",
+  "text": "query ViewerQuery {\n  viewer {\n    id\n    name\n    ...Repositories_repositories\n  }\n}\n\nfragment Repositories_repositories on User {\n  repositories(first: 10) {\n    nodes {\n      id\n      ...Repository_repository\n    }\n  }\n}\n\nfragment Repository_repository on Repository {\n  id\n  name\n  url\n  viewerHasStarred\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -78,6 +90,7 @@ return {
         "plural": false,
         "selections": [
           v0,
+          v1,
           {
             "kind": "FragmentSpread",
             "name": "Repositories_repositories",
@@ -102,6 +115,7 @@ return {
         "plural": false,
         "selections": [
           v0,
+          v1,
           {
             "kind": "LinkedField",
             "alias": null,
@@ -128,10 +142,18 @@ return {
                 "plural": true,
                 "selections": [
                   v0,
+                  v1,
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "name",
+                    "name": "url",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "viewerHasStarred",
                     "args": null,
                     "storageKey": null
                   }
@@ -146,5 +168,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '32ce1f3ca89453d8004932d49b9955b4';
+(node/*: any*/).hash = 'b6babe0ae979dfb642f2212fa89d39b7';
 module.exports = node;

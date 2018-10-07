@@ -4,6 +4,7 @@ import {
   RecordSource,
   Store,
 } from 'relay-runtime';
+require('dotenv').config()
 
 const endPoint = 'https://api.github.com/graphql'
 
@@ -15,7 +16,7 @@ function fetchQuery(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer 9f880af927cc7664f0aa74547d8c7790f5eafc2c'
+      'Authorization': `Bearer ${process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN}`
     },
     body: JSON.stringify({
       query: operation.text,

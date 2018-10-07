@@ -11,7 +11,8 @@ export default class Viewer extends React.Component {
         query={graphql`
           query ViewerQuery {
             viewer {
-              id
+              id,
+              name,
               ...Repositories_repositories
             }
           }
@@ -24,7 +25,10 @@ export default class Viewer extends React.Component {
           if (!props) {
             return <div>Loading...</div>;
           }
-          return <Repositories repositories={props.viewer} />
+          return <div>
+              <h1>{props.viewer.name}</h1>
+              <Repositories repositories={props.viewer} />
+            </div>
         }}
       />
     );

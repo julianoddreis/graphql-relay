@@ -4,13 +4,14 @@ import Repository from './Repository'
 
 class Repositories extends React.Component {
   render() {
-    const {repositories: {repositories: {nodes}}} = this.props;
+    const {repositories: {nodes}, id} = this.props.repositories;
     return (
       <div>
         {nodes.map(repository =>
           <Repository
             key={repository.id}
             repository={repository}
+            viewerId={id}
           />
         )}
       </div>
