@@ -6,7 +6,7 @@ import {
 } from 'relay-runtime';
 require('dotenv').config()
 
-const endPoint = 'https://api.github.com/graphql'
+export const endPoint = 'https://api.github.com/graphql'
 
 function fetchQuery(
   operation,
