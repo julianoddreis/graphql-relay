@@ -1,5 +1,5 @@
 import React from 'react'
-import Viewer from './Viewer'
+import Viewer from './organization'
 export default class App extends React.Component {
 
   render () {

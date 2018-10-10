@@ -22,8 +22,8 @@ class Repositories extends React.Component {
 export default createFragmentContainer(
   Repositories,
   graphql`
-    fragment Repositories_repositories on User {
-      repositories(first: 10) {
+    fragment Repositories_repositories on Organization {
+      repositories(first: 100) {
         nodes {
           id,
           ...Repository_repository

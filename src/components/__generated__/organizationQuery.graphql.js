@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fbc0d95a46492d67318f5eee0e212c3f
+ * @relayHash d928095debb1307c5269ff4fad1ff0f9
  */
 
 /* eslint-disable */
@@ -10,32 +10,31 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type Repositories_repositories$ref = any;
-export type ViewerQueryVariables = {||};
-export type ViewerQueryResponse = {|
-  +viewer: {|
-    +id: string,
+export type organizationQueryVariables = {||};
+export type organizationQueryResponse = {|
+  +organization: ?{|
     +name: ?string,
     +$fragmentRefs: Repositories_repositories$ref,
   |}
 |};
-export type ViewerQuery = {|
-  variables: ViewerQueryVariables,
-  response: ViewerQueryResponse,
+export type organizationQuery = {|
+  variables: organizationQueryVariables,
+  response: organizationQueryResponse,
 |};
 */
 
 
 /*
-query ViewerQuery {
-  viewer {
-    id
+query organizationQuery {
+  organization(login: "facebook") {
     name
     ...Repositories_repositories
+    id
   }
 }
 
-fragment Repositories_repositories on User {
-  repositories(first: 10) {
+fragment Repositories_repositories on Organization {
+  repositories(first: 100) {
     nodes {
       id
       ...Repository_repository
@@ -52,30 +51,38 @@ fragment Repository_repository on Repository {
 */
 
 const node/*: ConcreteRequest*/ = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
+var v0 = [
+  {
+    "kind": "Literal",
+    "name": "login",
+    "value": "facebook",
+    "type": "String!"
+  }
+],
 v1 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
+},
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "ViewerQuery",
+  "name": "organizationQuery",
   "id": null,
-  "text": "query ViewerQuery {\n  viewer {\n    id\n    name\n    ...Repositories_repositories\n  }\n}\n\nfragment Repositories_repositories on User {\n  repositories(first: 10) {\n    nodes {\n      id\n      ...Repository_repository\n    }\n  }\n}\n\nfragment Repository_repository on Repository {\n  id\n  name\n  url\n  viewerHasStarred\n}\n",
+  "text": "query organizationQuery {\n  organization(login: \"facebook\") {\n    name\n    ...Repositories_repositories\n    id\n  }\n}\n\nfragment Repositories_repositories on Organization {\n  repositories(first: 100) {\n    nodes {\n      id\n      ...Repository_repository\n    }\n  }\n}\n\nfragment Repository_repository on Repository {\n  id\n  name\n  url\n  viewerHasStarred\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "ViewerQuery",
+    "name": "organizationQuery",
     "type": "Query",
     "metadata": null,
     "argumentDefinitions": [],
@@ -83,13 +90,12 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "viewer",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "User",
+        "name": "organization",
+        "storageKey": "organization(login:\"facebook\")",
+        "args": v0,
+        "concreteType": "Organization",
         "plural": false,
         "selections": [
-          v0,
           v1,
           {
             "kind": "FragmentSpread",
@@ -102,30 +108,29 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ViewerQuery",
+    "name": "organizationQuery",
     "argumentDefinitions": [],
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "viewer",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "User",
+        "name": "organization",
+        "storageKey": "organization(login:\"facebook\")",
+        "args": v0,
+        "concreteType": "Organization",
         "plural": false,
         "selections": [
-          v0,
           v1,
           {
             "kind": "LinkedField",
             "alias": null,
             "name": "repositories",
-            "storageKey": "repositories(first:10)",
+            "storageKey": "repositories(first:100)",
             "args": [
               {
                 "kind": "Literal",
                 "name": "first",
-                "value": 10,
+                "value": 100,
                 "type": "Int"
               }
             ],
@@ -141,7 +146,7 @@ return {
                 "concreteType": "Repository",
                 "plural": true,
                 "selections": [
-                  v0,
+                  v2,
                   v1,
                   {
                     "kind": "ScalarField",
@@ -160,7 +165,8 @@ return {
                 ]
               }
             ]
-          }
+          },
+          v2
         ]
       }
     ]
@@ -168,5 +174,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b6babe0ae979dfb642f2212fa89d39b7';
+(node/*: any*/).hash = '7fb8a3a550b7b3f5a1d9bb091848de52';
 module.exports = node;

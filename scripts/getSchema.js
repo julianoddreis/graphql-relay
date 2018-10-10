@@ -11,7 +11,7 @@ const http = new HttpLink({ uri: 'https://api.github.com/graphql', fetch });
 
 const link = setContext((request, previousContext) => ({
   headers: {
-    'Authorization': `Bearer 9f880af927cc7664f0aa74547d8c7790f5eafc2c`,
+    'Authorization': `Bearer ${token}`,
   }
 })).concat(http);
 

@@ -26,7 +26,7 @@ export type Repositories_repositories = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "Repositories_repositories",
-  "type": "User",
+  "type": "Organization",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -34,12 +34,12 @@ const node/*: ConcreteFragment*/ = {
       "kind": "LinkedField",
       "alias": null,
       "name": "repositories",
-      "storageKey": "repositories(first:10)",
+      "storageKey": "repositories(first:100)",
       "args": [
         {
           "kind": "Literal",
           "name": "first",
-          "value": 10,
+          "value": 100,
           "type": "Int"
         }
       ],
@@ -74,5 +74,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '867f0346601218eea61c6d7a412c924e';
+(node/*: any*/).hash = '5049e2110fad87e8d9a732ca0a265719';
 module.exports = node;

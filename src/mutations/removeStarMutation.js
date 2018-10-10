@@ -1,8 +1,8 @@
 import {graphql, commitMutation} from 'react-relay';
 
 const mutation = graphql`
-  mutation addStarMutation($input: AddStarInput!) {
-    addStar(input: $input) {
+  mutation removeStarMutation($input: RemoveStarInput!) {
+    removeStar(input: $input) {
       clientMutationId,
       starrable {
         viewerHasStarred
@@ -13,11 +13,11 @@ const mutation = graphql`
 
 function getOptimisticResponse (clientMutationId, starrableId) {
   return {
-    addStar: {
+    removeStar: {
       clientMutationId,
       starrable: {
         id: starrableId,
-        viewerHasStarred: true,
+        viewerHasStarred: false,
         __typename: 'Repository'
       }
     }
